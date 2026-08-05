@@ -5,7 +5,7 @@ import CheckoutForm from '@/components/CheckoutForm';
 
 export default function Home() {
   const checkoutSectionRef = useRef<HTMLDivElement>(null);
-  const checkoutLink = "https://sslbiotech.com/product/rheumatic-fresh-capsules-20-cap/";
+  const checkoutLink = "https://sslbiotech.com/product/ssl-pain-pack/";
   const whatsappNumber = "919431295012";
 
   const handleBuyNow = () => {
