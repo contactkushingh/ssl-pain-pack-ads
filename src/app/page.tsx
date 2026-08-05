@@ -120,7 +120,7 @@ export default function Home() {
             <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 flex flex-col justify-between hover:shadow-md transition-all duration-300">
               <div className="space-y-4">
                 <div className="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full w-fit">
-                  अंदरूनी आराम - 2 Units
+                  अंदरूनी आराम
                 </div>
                 <div className="flex justify-center py-4 bg-white rounded-xl border border-slate-100/50">
                   <img 
@@ -141,12 +141,9 @@ export default function Home() {
 
             {/* Penco Fresh Oil */}
             <div className="bg-emerald-50/40 rounded-2xl p-6 border border-emerald-100/60 flex flex-col justify-between hover:shadow-md transition-all duration-300 relative">
-              <div className="absolute -top-3 right-6 bg-emerald-600 text-white font-bold text-[10px] uppercase px-3 py-1 rounded-full tracking-wider">
-                ⭐️ तुरंत राहत (Instant Relief)
-              </div>
               <div className="space-y-4">
                 <div className="bg-emerald-600 text-white text-xs font-extrabold px-3 py-1 rounded-full w-fit">
-                  बाहरी असर - 2 Units
+                  बाहरी असर
                 </div>
                 <div className="flex justify-center py-4 bg-white rounded-xl border border-slate-100/50">
                   <img 
@@ -169,7 +166,7 @@ export default function Home() {
             <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 flex flex-col justify-between hover:shadow-md transition-all duration-300">
               <div className="space-y-4">
                 <div className="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full w-fit">
-                  हड्डियों की मजबूती - 2 Units
+                  हड्डियों की मजबूती
                 </div>
                 <div className="flex justify-center py-4 bg-white rounded-xl border border-slate-100/50">
                   <img 
@@ -269,7 +266,7 @@ export default function Home() {
 
                 <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 text-center">
                   <span className="text-emerald-800 font-bold text-xs uppercase tracking-wider block mb-1">⚡️ Limited Stock Offer</span>
-                  <p className="text-xs text-slate-600">आज ऑर्डर करने पर पाइए <strong>ऑनलाइन भुगतान पर मुफ्त डिलीवरी (Free Prepaid Delivery)</strong></p>
+                  <p className="text-xs text-slate-600">आज ऑर्डर करने पर पाइए <strong>ऑनलाइन भुगतान पर मुफ्त डिलीवरी (Free Prepaid Delivery) एवं निश्चित उपहार (बाम, तेल, पुस्तक) बिल्कुल मुफ्त!</strong></p>
                 </div>
               </div>
             </div>
@@ -336,6 +333,7 @@ export default function Home() {
                 <div>
                   <p className="font-bold text-slate-900 text-xs sm:text-sm">पेन रिलीफ कॉम्बो (1 Month Pack)</p>
                   <p className="text-slate-500 text-[10px] sm:text-xs">Capsules x2 + Orthoneed x2 + Penco Oil x2</p>
+                  <p className="text-emerald-700 text-[10px] font-extrabold mt-1">🎁 निश्चित मुफ्त उपहार शामिल हैं (Balm + Oil + Book)</p>
                 </div>
                 <div className="text-right">
                   <span className="text-emerald-600 font-extrabold text-base">₹999</span>
