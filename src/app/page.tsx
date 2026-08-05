@@ -356,6 +356,69 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Official Trust & Customer Awareness Section */}
+      <section className="py-16 bg-emerald-50/20 border-t border-b border-emerald-100/40" id="trust-notice">
+        <div className="w-full max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* Card 1: Free Gifts */}
+          <div className="bg-white rounded-3xl p-8 border border-emerald-100 shadow-md flex flex-col justify-between space-y-6">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4">
+                🎁 सुनिश्चित उपहार (Assured Free Gift)
+              </div>
+              <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 leading-tight">
+                हर ऑर्डर के साथ पाएं निश्चित उपहार!
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed mt-4">
+                चूंकि आप यह पेन रिलीफ कॉम्बो **SSL Biotech** की ऑफिशियल वेबसाइट से सीधे खरीद रहे हैं, इसलिए प्रत्येक पैक की डिलीवरी के साथ आपको उपहार के तौर पर:
+              </p>
+              <ul className="mt-4 space-y-2 text-slate-700 text-sm font-semibold">
+                <li className="flex items-center gap-2">
+                  <span className="text-emerald-500">✓</span> 🧴 दर्द निवारक बाम (Pain Relief Balm)
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-emerald-500">✓</span> 🧪 अतिरिक्त दर्द निवारक तेल (Extra Pain Oil)
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-emerald-500">✓</span> 💊 अन्य आवश्यक सहायक औषधियां (Necessary Medicines)
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-emerald-500">✓</span> 📚 स्वास्थ्य मार्गदर्शिका पुस्तक (Health Guide Book)
+                </li>
+              </ul>
+            </div>
+            <p className="text-xs text-slate-400 border-t border-slate-100 pt-4">
+              *यह विशेष उपहार केवल ऑफिशियल वेबसाइट से ऑर्डर करने वाले ग्राहकों को ही भेजा जाएगा।
+            </p>
+          </div>
+
+          {/* Card 2: Fake/Counterfeit Warnings */}
+          <div className="bg-red-50/30 rounded-3xl p-8 border border-red-100 shadow-md flex flex-col justify-between space-y-6">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-red-100 text-red-800 text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4">
+                ⚠️ आवश्यक सूचना एवं सावधानी
+              </div>
+              <h3 className="text-xl md:text-2xl font-extrabold text-red-700 leading-tight">
+                बाजार में नकली दवाओं (Counterfeit) से सावधान रहें!
+              </h3>
+              <p className="text-slate-600 text-sm leading-relaxed mt-4">
+                बाजार में हमारी दवाओं का फर्जीवाड़ा बहुत ज्यादा हो रहा है। कुछ अनधिकृत विक्रेता इन दवाओं को 20%, 30% या कभी-कभी 50% डिस्काउंट का लालच देकर बेच रहे हैं, जो कि पूरी तरह नकली हो सकती हैं।
+              </p>
+              <p className="text-slate-800 text-sm leading-relaxed font-bold mt-3">
+                कंपनी अपने किसी भी ऑथराइज्ड सेलर को रिटेल बिक्री पर कोई भी डिस्काउंट मुहैया नहीं कराती है। 
+              </p>
+              <p className="text-red-750 text-sm font-extrabold mt-4 bg-red-50 p-3.5 rounded-xl border border-red-100">
+                📢 दोबारा दवा मंगवाने के लिए सीधे हमारे ऑफिशियल नंबर <a href={`tel:${whatsappNumber}`} className="underline font-black">{whatsappNumber}</a> पर संपर्क करें या केवल <a href="https://sslbiotech.com" target="_blank" rel="noopener noreferrer" className="underline font-black">sslbiotech.com</a> वेबसाइट से ही खरीदें।
+              </p>
+            </div>
+            <p className="text-xs text-red-700 font-bold border-t border-red-100 pt-4 text-center">
+              धन्यवाद, सावधान रहें! (Stay Safe & Stay Alert)
+            </p>
+          </div>
+
+        </div>
+      </section>
+
       {/* FAQ Accordion Section */}
       <section className="py-16 bg-slate-50 border-t border-slate-100">
         <div className="w-full max-w-[800px] mx-auto px-6">
