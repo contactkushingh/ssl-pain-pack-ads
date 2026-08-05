@@ -296,7 +296,7 @@ export default function Home() {
               </p>
 
               {/* Pricing Callout */}
-              <div className="bg-slate-50 border border-slate-200/60 rounded-3xl p-6 md:p-8 flex items-center gap-6 max-w-md shadow-xs">
+              <div className="bg-slate-50 border border-slate-200/60 rounded-3xl p-4 sm:p-6 md:p-8 flex flex-row items-center gap-4 sm:gap-6 max-w-md shadow-xs">
                 <div>
                   <span className="text-slate-400 line-through text-lg block">एमआरपी: ₹1,998</span>
                   <span className="text-emerald-600 font-black text-3xl md:text-4xl">₹999 Only</span>
