@@ -4,13 +4,12 @@ import { useState, useRef } from 'react';
 import CheckoutForm from '@/components/CheckoutForm';
 
 export default function Home() {
-  const [showModal, setShowModal] = useState(false);
   const checkoutSectionRef = useRef<HTMLDivElement>(null);
+  const checkoutLink = "https://sslbiotech.com/product/rheumatic-fresh-capsules-20-cap/";
+  const whatsappNumber = "919431295012";
 
-  const scrollToCheckout = () => {
-    if (checkoutSectionRef.current) {
-      checkoutSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleBuyNow = () => {
+    window.open(checkoutLink, '_blank');
   };
 
   const handleShareWhatsApp = () => {
@@ -49,17 +48,17 @@ export default function Home() {
                 <span className="text-emerald-500 text-lg">✓</span> आयुष प्रमाणित तत्व (AYUSH Certified)
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-emerald-500 text-lg">✓</span> घर बैठे मुफ्त डिलीवरी (FREE Delivery)
+                <span className="text-emerald-500 text-lg">✓</span> ऑनलाइन पेमेंट पर मुफ्त डिलीवरी (Free Prepaid Delivery)
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-emerald-500 text-lg">✓</span> दवा मिलने पर भुगतान (COD Available)
+                <span className="text-emerald-500 text-lg">✓</span> कैश ऑन डिलीवरी उपलब्ध (COD Available)
               </div>
             </div>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button
-                onClick={scrollToCheckout}
+                onClick={handleBuyNow}
                 className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base md:text-lg px-8 py-4 rounded-xl shadow-lg hover:shadow-emerald-200/50 hover:-translate-y-0.5 transition-all text-center flex items-center justify-center gap-2 cursor-pointer animate-pulse-subtle"
               >
                 🛒 अभी खरीदें और दर्द से राहत पाएं (Buy Now)
@@ -74,54 +73,27 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Hero Right: Product Pack Image */}
-          <div className="relative flex flex-col items-center justify-center bg-white rounded-3xl p-6 md:p-10 shadow-xl border border-slate-100/80">
+          {/* Hero Right: Common Pain Relief Image */}
+          <div className="relative flex flex-col items-center justify-center bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100/80">
             <div className="absolute top-4 left-4 bg-red-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full tracking-wider z-10 animate-bounce">
               50% OFF TODAY
             </div>
             
-            <div className="w-full aspect-[4/3] relative flex items-center justify-center mb-6">
-              {/* Product Pack Collage */}
-              <div className="relative w-full h-full flex justify-center items-end gap-2 md:gap-4 px-2">
-                {/* Rheumatic Capsule */}
-                <div className="w-1/3 flex flex-col items-center group transition-all duration-300 hover:scale-105">
-                  <img 
-                    src="/images/ssl/rheumatic_fresh.jpg" 
-                    alt="Rheumatic Fresh Capsule" 
-                    className="max-h-[140px] md:max-h-[190px] w-auto object-contain rounded-lg shadow-md"
-                  />
-                  <span className="text-[10px] md:text-xs font-bold text-slate-700 mt-2 text-center">Rheumatic Fresh (2 Units)</span>
-                </div>
-                
-                {/* Penco Oil (Center / Main) */}
-                <div className="w-1/3 flex flex-col items-center z-10 transition-all duration-300 hover:scale-108 -translate-y-4">
-                  <img 
-                    src="/images/ssl/penco_oil.jpg" 
-                    alt="Penco Fresh Oil" 
-                    className="max-h-[160px] md:max-h-[220px] w-auto object-contain rounded-lg shadow-lg border-2 border-emerald-100"
-                  />
-                  <span className="text-[10px] md:text-xs font-extrabold text-emerald-800 mt-2 text-center bg-emerald-50 px-2 py-0.5 rounded-full">Penco Oil (2 Units)</span>
-                </div>
-
-                {/* Orthoneed Capsule */}
-                <div className="w-1/3 flex flex-col items-center group transition-all duration-300 hover:scale-105">
-                  <img 
-                    src="/images/ssl/orthoneed.jpg" 
-                    alt="Orthoneed Capsule" 
-                    className="max-h-[140px] md:max-h-[190px] w-auto object-contain rounded-lg shadow-md"
-                  />
-                  <span className="text-[10px] md:text-xs font-bold text-slate-700 mt-2 text-center">Orthoneed Capsule (2 Units)</span>
-                </div>
-              </div>
+            <div className="w-full aspect-[4/3] relative">
+              <img 
+                src="/images/ssl/pain_relief_hero.jpg" 
+                alt="Joint Pain Relief Therapy" 
+                className="w-full h-full object-cover"
+              />
             </div>
 
-            <div className="w-full border-t border-slate-100 pt-6 text-center">
-              <p className="text-slate-500 text-xs sm:text-sm font-medium">कम्पलीट पेन रिलीफ कॉम्बो (2 महीने का कोर्स पैक)</p>
+            <div className="w-full border-t border-slate-100 p-6 text-center">
+              <p className="text-slate-500 text-xs sm:text-sm font-medium">कम्पलीट पेन रिलीफ कॉम्बो (1 महीने का पूरा कोर्स)</p>
               <div className="flex items-center justify-center gap-3 mt-1">
                 <span className="text-slate-400 line-through text-base md:text-lg">₹1,998</span>
                 <span className="text-emerald-600 font-extrabold text-2xl md:text-3xl">₹999 Only</span>
               </div>
-              <p className="text-emerald-700 text-xs font-bold mt-1">🚚 फ्री डिलीवरी + कैश ऑन डिलीवरी उपलब्ध</p>
+              <p className="text-emerald-700 text-xs font-bold mt-1">💳 ऑनलाइन भुगतान पर FREE डिलीवरी | COD पर अतिरिक्त चार्ज</p>
             </div>
           </div>
 
@@ -134,7 +106,7 @@ export default function Home() {
           <div className="text-center max-w-[800px] mx-auto mb-16 space-y-4">
             <span className="text-xs uppercase font-extrabold text-emerald-600 tracking-widest block">The Truth About Painkillers</span>
             <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900">
-              लगातार पेनकिलर खाना आपकी सेहत के लिए खतरनाक है!
+              लगातार पेनकलर खाना आपकी सेहत के लिए खतरनाक है!
             </h2>
             <p className="text-slate-600 leading-relaxed text-sm md:text-base">
               साधारण पेनकिलर खाने से दर्द थोड़ी देर के लिए तो दब जाता है, लेकिन इसके लगातार सेवन से पेट में अल्सर, लीवर और किडनी पर गंभीर बुरा असर पड़ सकता है। हमारा यह होम्योपैथिक और हर्बल कॉम्बो आपके दर्द पर बाहरी और अंदरूनी, दोनों तरफ से बिना किसी साइड इफेक्ट के काम करता है:
@@ -150,11 +122,11 @@ export default function Home() {
                 <div className="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full w-fit">
                   अंदरूनी आराम - 2 Units
                 </div>
-                <div className="flex justify-center py-4">
+                <div className="flex justify-center py-4 bg-white rounded-xl border border-slate-100/50">
                   <img 
-                    src="/images/ssl/rheumatic_fresh.jpg" 
+                    src="/images/ssl/rheumatic_fresh_bottle.jpg" 
                     alt="Rheumatic Fresh Capsules" 
-                    className="h-44 w-auto object-contain rounded-lg shadow-sm"
+                    className="h-44 w-auto object-contain rounded-lg"
                   />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900">Rheumatic Fresh Capsules</h3>
@@ -176,11 +148,11 @@ export default function Home() {
                 <div className="bg-emerald-600 text-white text-xs font-extrabold px-3 py-1 rounded-full w-fit">
                   बाहरी असर - 2 Units
                 </div>
-                <div className="flex justify-center py-4">
+                <div className="flex justify-center py-4 bg-white rounded-xl border border-slate-100/50">
                   <img 
-                    src="/images/ssl/penco_oil.jpg" 
+                    src="/images/ssl/penco_oil_bottle.jpg" 
                     alt="Penco Fresh Oil" 
-                    className="h-44 w-auto object-contain rounded-lg shadow-sm"
+                    className="h-44 w-auto object-contain rounded-lg"
                   />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900">Penco Fresh Oil (100ml)</h3>
@@ -199,11 +171,11 @@ export default function Home() {
                 <div className="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full w-fit">
                   हड्डियों की मजबूती - 2 Units
                 </div>
-                <div className="flex justify-center py-4">
+                <div className="flex justify-center py-4 bg-white rounded-xl border border-slate-100/50">
                   <img 
-                    src="/images/ssl/orthoneed.jpg" 
+                    src="/images/ssl/orthoneed_bottle.jpg" 
                     alt="Orthoneed Capsules" 
-                    className="h-44 w-auto object-contain rounded-lg shadow-sm"
+                    className="h-44 w-auto object-contain rounded-lg"
                   />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900">Orthoneed Capsules</h3>
@@ -221,10 +193,10 @@ export default function Home() {
           <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-2 text-center md:text-left">
               <h4 className="text-lg md:text-xl font-bold text-slate-900">क्या आप अपने दर्द को हमेशा के लिए अलविदा कहना चाहते हैं?</h4>
-              <p className="text-slate-600 text-sm">इस 2 महीने के कम्पलीट कोर्स को अभी ऑर्डर करें। डिलीवरी बिल्कुल मुफ्त है।</p>
+              <p className="text-slate-600 text-sm">इस 1 महीने के कम्पलीट कोर्स को अभी ऑर्डर करें। ऑनलाइन पेमेंट पर डिलीवरी बिल्कुल मुफ्त है।</p>
             </div>
             <button 
-              onClick={scrollToCheckout}
+              onClick={handleBuyNow}
               className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-md cursor-pointer whitespace-nowrap text-sm"
             >
               🛒 अभी आर्डर करें - Buy Now
@@ -297,7 +269,7 @@ export default function Home() {
 
                 <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 text-center">
                   <span className="text-emerald-800 font-bold text-xs uppercase tracking-wider block mb-1">⚡️ Limited Stock Offer</span>
-                  <p className="text-xs text-slate-600">आज ऑर्डर करने पर पाइए <strong>मुफ्त घर पहुंच सेवा (Free Delivery)</strong></p>
+                  <p className="text-xs text-slate-600">आज ऑर्डर करने पर पाइए <strong>ऑनलाइन भुगतान पर मुफ्त डिलीवरी (Free Prepaid Delivery)</strong></p>
                 </div>
               </div>
             </div>
@@ -317,10 +289,10 @@ export default function Home() {
                 🔥 स्पेशल डिस्काउंट - 50% की भारी बचत
               </span>
               <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight">
-                दर्द को वापस न आने दें! 2 महीने का कम्पलीट कोर्स
+                दर्द को वापस न आने दें! 1 महीने का कम्पलीट कोर्स
               </h2>
               <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                यह कॉम्बो केवल दर्द की दवा नहीं है, यह जोड़ों की सेहत को दोबारा लौटाने का एक पूरा कोर्स है। चूँकि इसमें हर दवा की 2 यूनिट शामिल हैं, यह पूरे 2 महीने का इलाज सुनिश्चित करता है जो स्थायी राहत के लिए अत्यंत आवश्यक है।
+                यह कॉम्बो केवल दर्द की अस्थायी दवा नहीं है, यह जोड़ों की सेहत को दोबारा लौटाने का एक पूरा 1 महीने का कोर्स है। स्थायी राहत के लिए इसका पूरा नियमपूर्वक उपयोग अत्यंत आवश्यक है।
               </p>
 
               {/* Pricing Callout */}
@@ -333,27 +305,51 @@ export default function Home() {
                   <span className="bg-emerald-100 text-emerald-800 font-bold text-[10px] md:text-xs px-2 py-0.5 rounded-full block w-fit">
                     बचत: ₹999 (50%)
                   </span>
-                  <p className="text-xs text-slate-500 font-medium">मुफ्त होम डिलीवरी और कैश ऑन डिलीवरी।</p>
+                  <p className="text-xs text-slate-500 font-medium">ऑनलाइन पेमेंट करने पर डिलीवरी बिलकुल फ्री है।</p>
                 </div>
               </div>
 
               {/* Mini trust checklist */}
               <div className="space-y-3 text-xs md:text-sm font-semibold text-slate-700">
                 <div className="flex items-center gap-2">
-                  <span className="text-emerald-500">✓</span> कोई एडवांस पेमेंट नहीं - भुगतान सामान मिलने पर (No Advance Payment)
+                  <span className="text-emerald-500">✓</span> प्रीपेड ऑर्डर्स पर मिलेगी 100% फ्री डिलीवरी (Free Prepaid Delivery)
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-emerald-500">✓</span> असली दवा की 100% गारंटी - सीधे कंपनी से (Authentic Products)
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-emerald-500">✓</span> आसान रिटर्न पालिसी उपलब्ध (Easy Return Option)
+                  <span className="text-emerald-500">✓</span> कैश ऑन डिलीवरी विकल्प भी उपलब्ध (COD Option Available)
                 </div>
               </div>
             </div>
 
-            {/* Form right */}
-            <div className="flex justify-center">
-              <CheckoutForm />
+            {/* Direct Checkout Panel right */}
+            <div className="bg-slate-50 border border-slate-100 rounded-3xl p-8 max-w-md w-full shadow-lg text-center space-y-6">
+              <span className="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                Official Checkout Page
+              </span>
+              <h3 className="text-xl font-bold text-slate-900">वेबसाइट से डायरेक्ट सुरक्षित ऑर्डर करें</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                आप नीचे दिए गए बटन पर क्लिक करके सीधे हमारी सुरक्षित वेबसाइट से इस कॉम्बो का ऑर्डर कर सकते हैं। 
+              </p>
+              <div className="bg-white border border-slate-100 rounded-2xl p-4 flex justify-between items-center text-left">
+                <div>
+                  <p className="font-bold text-slate-900 text-xs sm:text-sm">पेन रिलीफ कॉम्बो (1 Month Pack)</p>
+                  <p className="text-slate-500 text-[10px] sm:text-xs">Capsules x2 + Orthoneed x2 + Penco Oil x2</p>
+                </div>
+                <div className="text-right">
+                  <span className="text-emerald-600 font-extrabold text-base">₹999</span>
+                </div>
+              </div>
+              <button
+                onClick={handleBuyNow}
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-md text-base tracking-wide flex items-center justify-center gap-2 cursor-pointer"
+              >
+                🛒 सीधे ऑर्डर करें (Click to Checkout)
+              </button>
+              <p className="text-[10px] text-slate-400">
+                🔒 सुरक्षित भुगतान और त्वरित 3-5 दिन डिलीवरी।
+              </p>
             </div>
 
           </div>
@@ -388,11 +384,11 @@ export default function Home() {
 
             <details className="group bg-white border border-slate-200/60 rounded-xl p-5 shadow-xs [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex items-center justify-between font-bold text-slate-900 cursor-pointer text-sm md:text-base list-none">
-                <span>मुझे दवा के लिए भुगतान कैसे करना होगा?</span>
+                <span>क्या मुझे डिलीवरी चार्ज भी देना होगा?</span>
                 <span className="transition group-open:rotate-180 text-emerald-600">▼</span>
               </summary>
               <p className="text-xs md:text-sm text-slate-600 mt-3 leading-relaxed">
-                आपको कोई भी एडवांस पेमेंट करने की जरूरत नहीं है। हम पूरे भारत में कैश ऑन डिलीवरी (COD) सेवा प्रदान करते हैं। जब कोरियर वाला दवा आपके घर लेकर आए, भुगतान आपको तभी नकद या यूपीआई द्वारा करना होगा।
+                यदि आप ऑर्डर करते समय वेबसाइट पर **ऑनलाइन पेमेंट (Prepaid)** करते हैं, तो डिलीवरी बिल्कुल **मुफ्त (FREE)** है। लेकिन यदि आप **कैश ऑन डिलीवरी (COD)** चुनते हैं, तो ₹50 डिलीवरी चार्ज अलग से देय होगा।
               </p>
             </details>
 
@@ -412,20 +408,20 @@ export default function Home() {
       {/* Sticky Bottom checkout bar */}
       <div className="fixed bottom-0 left-0 w-full bg-white/95 border-t border-slate-200 py-3.5 px-6 flex items-center justify-between md:justify-center gap-6 z-40 backdrop-blur-md shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
         <div className="hidden sm:block text-left md:text-center">
-          <p className="text-slate-500 text-xs font-semibold">2 महीने का रिलीफ कोर्स</p>
+          <p className="text-slate-500 text-xs font-semibold">1 महीने का कम्पलीट कोर्स</p>
           <p className="text-emerald-700 font-extrabold text-lg">₹999 <span className="text-slate-400 line-through text-xs font-medium">₹1,998</span></p>
         </div>
         <button
-          onClick={scrollToCheckout}
+          onClick={handleBuyNow}
           className="flex-grow md:flex-grow-0 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm md:text-base py-3.5 px-8 rounded-full shadow-md hover:shadow-emerald-200/40 hover:-translate-y-0.5 transition-all text-center flex items-center justify-center gap-2 cursor-pointer"
         >
-          🛍️ सुरक्षित चेकआउट (Cash on Delivery Available)
+          🛍️ सुरक्षित चेकआउट (Click to Checkout)
         </button>
       </div>
 
       {/* Floating WhatsApp support widget */}
       <a
-        href="https://wa.me/919999999999?text=प्रणाम%20SSL%20Biotech,%20मुझे%20दर्द%20निवारक%20कॉम्बो%20के%20बारे%20में%20पूछना%20है।"
+        href={`https://wa.me/${whatsappNumber}?text=प्रणाम%20SSL%20Biotech,%20मुझे%20दर्द%20निवारक%20कॉम्बो%20के%20बारे%20में%20पूछना%20है।`}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-20 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white font-bold p-4 rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2"
