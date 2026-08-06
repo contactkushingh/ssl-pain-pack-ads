@@ -1,12 +1,94 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import CheckoutForm from '@/components/CheckoutForm';
+
+const testimonials = [
+  {
+    name: "रामकिशन शर्मा",
+    age: 58,
+    location: "उत्तर प्रदेश",
+    issue: "साइटिका और घुटनों का दर्द",
+    text: "मैं पिछले 3 सालों से साइटिका और घुटनों के दर्द से बहुत परेशान था। उठना-बैठना तक मुश्किल हो गया था और रोज पेनकिलर खानी पड़ती थी। फिर मुझे Hmedkart से इस 'कम्पलीट पेन रिलीफ किट' के बारे में पता चला। Penco Fresh Oil लगाने से मुझे पहले ही दिन से आराम महसूस हुआ और Rheumatic और Orthoneed कैप्सूल के लगातार इस्तेमाल से मेरी नसों का दर्द अब लगभग खत्म हो गया है। अब मैं बिना किसी सहारे के चल सकता हूँ!"
+  },
+  {
+    name: "सुनीता देवी",
+    age: 45,
+    location: "बिहार",
+    issue: "गठिया और जोड़ों का दर्द",
+    text: "गठिया के दर्द के कारण सुबह उठकर काम करना भी मुश्किल होता था। घुटने सूज जाते थे। इस पेन किट को मंगाने के 15 दिन बाद ही मेरी सूजन काफी कम हो गई और अब मैं रसोई का सारा काम खुद बिना किसी दर्द के कर लेती हूँ। मेरे लिए तो यह दवा वरदान साबित हुई है।"
+  },
+  {
+    name: "जगदीश सिंह",
+    age: 62,
+    location: "पंजाब",
+    issue: "जोड़ों का दर्द और नसों की सूजन",
+    text: "एलोपैथिक पेनकिलर खाने से मेरे पेट में गैस बनने लगी थी और किडनी का भी डर था। फिर मैंने यह प्राकृतिक होम्योपैथिक किट चुनी। 1 महीने में जोड़ों का पुराना दर्द काफी कम हो गया और पेट पर भी कोई बुरा असर नहीं हुआ। होम्योपैथी सच में सुरक्षित और असरदार है।"
+  },
+  {
+    name: "महेश कोली",
+    age: 52,
+    location: "महाराष्ट्र",
+    issue: "स्लिप्ड डिस्क और पीठ का दर्द",
+    text: "सिल्प डिस्क की वजह से रीढ़ की हड्डी में भयंकर खिंचाव रहता था। काम पर जाना तक बंद हो गया था। ऑर्थोनीड और रुमाटिक फ्रेश कैप्सूल्स ने मेरी पीठ की नसों की जकड़न पूरी तरह खोल दी। अब मैं काम पर बिना किसी दर्द के जा पा रहा हूँ। धन्यवाद SSL Biotech!"
+  },
+  {
+    name: "कमला बाई",
+    age: 55,
+    location: "मध्य प्रदेश",
+    issue: "कमर और रीढ़ का दर्द",
+    text: "कमर के भयंकर दर्द के लिए मैंने कई प्रकार के तेल और दवाइयां आजमाईं पर कोई स्थाई फायदा नहीं हुआ। पेनको तेल की मालिश से तुरंत आराम मिलता है और इन दोनों कैप्सूल्स ने दर्द को दोबारा आने से रोक दिया। बहुत ही असरदार और विश्वसनीय कॉम्बो है।"
+  },
+  {
+    name: "रमेश चंद्र",
+    age: 60,
+    location: "राजस्थान",
+    issue: "साइटिका (Sciatica)",
+    text: "साइटिका का दर्द पैर से नीचे तक जाता था, जिससे चलना-फिरना दूभर हो गया था। डॉक्टर ने ऑपरेशन की सलाह दी थी। पर 1 महीने इस किट का पूरा कोर्स करने के बाद दर्द पूरी तरह गायब है। अब मैं बिना किसी सहारे के रोजाना सुबह टहलने जाता हूँ।"
+  },
+  {
+    name: "निर्मला गुप्ता",
+    age: 50,
+    location: "दिल्ली",
+    issue: "स्पॉन्डिलाइटिस और गर्दन का दर्द",
+    text: "लगातार कंप्यूटर पर काम करने से स्पॉन्डिलाइटिस का दर्द बहुत बढ़ गया था। नसों में बहुत तेज खिंचाव था। यह दवा 10 दिन लेने के बाद ही मेरे कंधे और गर्दन का दर्द काफी हल्का हो गया है और जकड़न पूरी तरह दूर हो गई है। बहुत बढ़िया इलाज है।"
+  },
+  {
+    name: "अरविन्द रेड्डी",
+    age: 57,
+    location: "आंध्र प्रदेश",
+    issue: "घुटनों का दर्द और गैप",
+    text: "घुटनों में कार्टिलेज घिसने के कारण चलने पर कटकट की आवाज आती थी और भयंकर दर्द होता था। ऑर्थोनीड कैप्सूल ने मेरी हड्डियों को ताकत दी और कैल्शियम की कमी को पूरा किया। अब उठने-बैठने और सीढ़ियां चढ़ने में कोई तकलीफ नहीं होती।"
+  },
+  {
+    name: "शीला देवी",
+    age: 48,
+    location: "हरियाणा",
+    issue: "मांसपेशियों की जकड़न",
+    text: "सर्दी के मौसम में मेरे जोड़ों और मांसपेशियों का दर्द असहनीय हो जाता था। पेनको फ्रेश ऑयल से प्रभावित जगह पर तुरंत आराम मिलता है और कैप्सूल्स अंदरूनी सूजन दूर करते हैं। मेरे पूरे परिवार के लिए यह किट सबसे भरोसेमंद पेन रिलीफ है।"
+  },
+  {
+    name: "दिनेश प्रसाद",
+    age: 54,
+    location: "झारखंड",
+    issue: "पुरानी कमर का दर्द",
+    text: "सालों पुराना कमर का दर्द था, जिसकी वजह से रोज दर्द की गोली खानी पड़ती थी जो सेहत के लिए खतरनाक थी। यह प्राकृतिक होम्योपैथिक किट मेरे लिए सबसे सुरक्षित साबित हुई। इसके इस्तेमाल से मेरा दर्द 80% तक ठीक हो चुका है और दर्द की गोली पूरी तरह छूट गई है।"
+  }
+];
 
 export default function Home() {
   const checkoutSectionRef = useRef<HTMLDivElement>(null);
   const checkoutLink = "https://sslbiotech.com/product/ssl-pain-pack/";
   const whatsappNumber = "919431295012";
+
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleBuyNow = () => {
     window.open(checkoutLink, '_blank');
@@ -212,18 +294,34 @@ export default function Home() {
               <div className="w-fit bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                 सच्ची कहानी (Success Story)
               </div>
-              <h2 className="text-2xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                देखिए कैसे रामकिशन जी ने साइटिका के दर्द को हराया!
+              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 leading-tight min-h-[72px]">
+                देखिए कैसे {testimonials[activeTestimonial].name} जी ने {testimonials[activeTestimonial].issue} को हराया!
               </h2>
               
-              <blockquote className="bg-white border-l-4 border-emerald-500 rounded-r-2xl p-6 shadow-sm space-y-4">
-                <p className="text-slate-700 text-sm md:text-base leading-relaxed italic">
-                  "मैं पिछले 3 सालों से साइटिका (Sciatica) और घुटनों के दर्द से बहुत परेशान था। उठना-बैठना तक मुश्किल हो गया था और रोज पेनकिलर खानी पड़ती थी। फिर मुझे Hmedkart से इस 'कम्पलीट पेन रिलीफ किट' के बारे में पता चला। Penco Fresh Oil लगाने से मुझे पहले ही दिन से आराम महसूस हुआ और Rheumatic और Orthoneed कैप्सूल के लगातार इस्तेमाल से मेरी नसों का दर्द अब लगभग खत्म हो गया है। अब मैं बिना किसी सहारे के चल सकता हूँ!"
-                </p>
-                <cite className="block font-bold text-slate-900 text-sm not-italic">
-                  - रामकिशन शर्मा (उम्र 58 वर्ष), उत्तर प्रदेश
-                </cite>
-              </blockquote>
+              <div className="relative overflow-hidden min-h-[220px]">
+                <blockquote className="bg-white border-l-4 border-emerald-500 rounded-r-2xl p-6 shadow-sm space-y-4">
+                  <p className="text-slate-700 text-sm md:text-base leading-relaxed italic">
+                    "{testimonials[activeTestimonial].text}"
+                  </p>
+                  <cite className="block font-bold text-slate-900 text-sm not-italic">
+                    - {testimonials[activeTestimonial].name} (उम्र {testimonials[activeTestimonial].age} वर्ष), {testimonials[activeTestimonial].location}
+                  </cite>
+                </blockquote>
+              </div>
+
+              {/* Dots navigation */}
+              <div className="flex justify-start flex-wrap gap-2 pt-2">
+                {testimonials.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveTestimonial(idx)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      activeTestimonial === idx ? 'bg-emerald-600 w-6' : 'bg-slate-300 hover:bg-slate-400'
+                    }`}
+                    aria-label={`Go to testimonial ${idx + 1}`}
+                  />
+                ))}
+              </div>
 
               {/* Trust badges */}
               <div className="grid grid-cols-3 gap-4 pt-4 text-center">
