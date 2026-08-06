@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { db } from '@/lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export default function Checkout() {
   const [formData, setFormData] = useState({
@@ -140,10 +142,21 @@ export default function Checkout() {
       setIsSubmitting(true);
       const simulatedTxId = 'COD-' + Math.random().toString(36).substring(2, 11).toUpperCase();
       setTransactionId(simulatedTxId);
-      setTimeout(() => {
+
+      // Save to Firebase Firestore
+      addDoc(collection(db, 'orders'), {
+        ...formData,
+        paymentMethod: 'cod',
+        transactionId: simulatedTxId,
+        amount: totalPrice,
+        status: 'pending_confirmation',
+        createdAt: serverTimestamp(),
+      }).catch(err => {
+        console.error("Firestore Save Error (COD):", err);
+      }).finally(() => {
         setIsSubmitting(false);
         setIsSuccess(true);
-      }, 1500);
+      });
     }
   };
 
@@ -151,13 +164,26 @@ export default function Checkout() {
     setRazorpayStep('processing');
     const simulatedTxId = 'pay_' + Math.random().toString(36).substring(2, 11).toUpperCase();
     setTransactionId(simulatedTxId);
-    setTimeout(() => {
-      setRazorpayStep('success');
+
+    // Save to Firebase Firestore
+    addDoc(collection(db, 'orders'), {
+      ...formData,
+      paymentMethod: 'razorpay',
+      transactionId: simulatedTxId,
+      amount: totalPrice,
+      status: 'paid',
+      createdAt: serverTimestamp(),
+    }).catch(err => {
+      console.error("Firestore Save Error (Razorpay):", err);
+    }).finally(() => {
       setTimeout(() => {
-        setShowRazorpayModal(false);
-        setIsSuccess(true);
-      }, 1500);
-    }, 2000);
+        setRazorpayStep('success');
+        setTimeout(() => {
+          setShowRazorpayModal(false);
+          setIsSuccess(true);
+        }, 1500);
+      }, 2000);
+    });
   };
 
   const basePrice = 999;
