@@ -21,6 +21,7 @@ export default function Checkout() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [showRazorpayModal, setShowRazorpayModal] = useState(false);
   const [razorpayStep, setRazorpayStep] = useState<'select' | 'processing' | 'success'>('select');
+  const [transactionId, setTransactionId] = useState('');
 
   const statesOfIndia = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", 
@@ -29,6 +30,43 @@ export default function Checkout() {
     "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", 
     "Uttarakhand", "West Bengal", "Delhi"
   ];
+
+  const fetchPincodeData = async (pin: string) => {
+    if (pin.length !== 6) return;
+    setPinStatus({ available: true, message: '🔍 पिनकोड जाँचा जा रहा है...' });
+    try {
+      const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+      const data = await res.json();
+      if (data && data[0] && data[0].Status === "Success") {
+        const postOffice = data[0].PostOffice[0];
+        const fetchedCity = postOffice.District;
+        const fetchedState = postOffice.State;
+        
+        setFormData(prev => ({
+          ...prev,
+          city: fetchedCity,
+          state: fetchedState
+        }));
+        setPinChecked(true);
+        setPinStatus({ 
+          available: true, 
+          message: `✅ डिलीवरी उपलब्ध है! (${fetchedCity}, ${fetchedState})` 
+        });
+      } else {
+        setPinChecked(true);
+        setPinStatus({ 
+          available: false, 
+          message: '❌ गलत पिनकोड या सेवा उपलब्ध नहीं है।' 
+        });
+      }
+    } catch (error) {
+      setPinChecked(true);
+      setPinStatus({ 
+        available: true, 
+        message: '✅ डिलीवरी उपलब्ध है।' 
+      });
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -39,6 +77,9 @@ export default function Checkout() {
     if (name === 'pincode') {
       setPinChecked(false);
       setPinStatus(null);
+      if (value.length === 6 && /^\d{6}$/.test(value)) {
+        fetchPincodeData(value);
+      }
     }
   };
 
@@ -52,14 +93,7 @@ export default function Checkout() {
       setErrors(prev => ({ ...prev, pincode: 'कृपया सही 6-अंकीय पिनकोड दर्ज करें' }));
       return;
     }
-
-    setPinChecked(true);
-    // Simulate pincode check (available everywhere except invalid patterns)
-    if (formData.pincode.startsWith('0') || formData.pincode === '999999') {
-      setPinStatus({ available: false, message: '❌ इस पिनकोड पर डिलीवरी उपलब्ध नहीं है।' });
-    } else {
-      setPinStatus({ available: true, message: '✅ बधाई हो! इस पिनकोड पर फास्ट डिलीवरी उपलब्ध है।' });
-    }
+    fetchPincodeData(formData.pincode);
   };
 
   const validateForm = () => {
@@ -104,6 +138,8 @@ export default function Checkout() {
       setRazorpayStep('select');
     } else {
       setIsSubmitting(true);
+      const simulatedTxId = 'COD-' + Math.random().toString(36).substring(2, 11).toUpperCase();
+      setTransactionId(simulatedTxId);
       setTimeout(() => {
         setIsSubmitting(false);
         setIsSuccess(true);
@@ -113,6 +149,8 @@ export default function Checkout() {
 
   const handleRazorpayPayment = () => {
     setRazorpayStep('processing');
+    const simulatedTxId = 'pay_' + Math.random().toString(36).substring(2, 11).toUpperCase();
+    setTransactionId(simulatedTxId);
     setTimeout(() => {
       setRazorpayStep('success');
       setTimeout(() => {
@@ -160,6 +198,7 @@ export default function Checkout() {
               <p><strong>मोबाइल:</strong> {formData.phone}</p>
               <p><strong>पता:</strong> {formData.address}, {formData.city}, {formData.state} - {formData.pincode}</p>
               <p><strong>भुगतान विधि:</strong> {paymentMethod === 'cod' ? 'कैश ऑन डिलीवरी (COD)' : 'ऑनलाइन (Razorpay)'}</p>
+              <p><strong>ट्रांजैक्शन ID / UTR:</strong> <span className="font-mono text-xs font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded">{transactionId}</span></p>
               <p><strong>कुल भुगतान राशि:</strong> <span className="font-extrabold text-emerald-700">₹{totalPrice}</span></p>
             </div>
 
