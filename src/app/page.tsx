@@ -91,7 +91,7 @@ export default function Home() {
   }, []);
 
   const handleBuyNow = () => {
-    window.open(checkoutLink, '_blank');
+    window.location.href = '/checkout';
   };
 
   const handleShareWhatsApp = () => {
